@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.ClazzMapper">
+
+
+
+
+    <!--不要在sql语句里面写注释！！！！-->
+    <!--beginDate和endate解释：
+        前端输入的begin不能早于数据库的begin_date，前端输入的end不能晚于数据库的end_date
+        意思就是说：查找 begin_date ≤ 查询开始时间且 end_date ≥ 查询结束时间的记录
+    -->
+    <select id="pageQueryClazz" resultType="com.hm.pojo.Clazz">
+        select c.*,(select name from emp where id=c.master_id) as masterName from clazz c
+        <where>
+            <if test="name !=null and name!=''">
+                 c.name like concat('%',#{name},'%')
+            </if>
+            <if test="begin !=null and end!=null">
+                and c.begin_date &lt;=#{begin} and c.end_date &gt;=#{end}
+            </if>
+        </where>
+    </select><!--只有字符串需要额外判断name不能为空字符串   全都要判断为不为null  不能写entry_date!=null -->
+
+
+    <update id="updateById">
+        update  clazz
+        <set>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="room!=null and room!=''">
+                room = #{room},
+            </if>
+            <if test="beginDate!=null">
+                begin_date = #{beginDate},
+            </if>
+            <if test="endDate!=null">
+                end_date = #{endDate},
+            </if>
+            <if test="masterId!=null">
+                master_id = #{masterId},
+            </if>
+            <if test="subject!=null">
+                subject = #{subject},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <!--void insert(Emp emp);
+<!-useGeneratedKeys="true" 用于获取生成自增长主键值
+keyProperty="id" 用于将自增长主键值赋值给参数对象 emp 里面的id属性
+&ndash;&gt;
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO emp (username,
+                         password,
+                         name,
+                         gender,
+                         phone,
+                         job,
+                         salary,
+                         image,
+                         entry_date,
+                         dept_id,
+                         create_time,
+                         update_time)
+        VALUES (#{username},
+                #{password},
+                #{name},
+                #{gender},
+                #{phone},
+                #{job},
+                #{salary},
+                #{image},
+                #{entryDate},
+                #{deptId},
+                #{createTime},
+                #{updateTime})
+    </insert>
+
+    &lt;!&ndash;两种写法，在xml代码里区别就是foreach的写法不同
+    sql1: delete from emp where id in (1,2,3,...)
+    sql2: delete from emp where id=1 or id=2 or id=3 or ...&ndash;&gt;
+    <delete id="deleteBatch">
+        delete
+        from emp
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    &lt;!&ndash;映射基础类型
+        id标签：主键字段映射； result标签:普通字段映射
+        property是设置Emp的属性名(pojo里面的实体
+        column是数据库查询返回的字段名
+    &ndash;&gt;
+    <resultMap id="findByIdMap" type="com.hm.pojo.Emp">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="phone" column="phone"/>
+        <result property="job" column="job"/>
+        <result property="salary" column="salary"/>
+        <result property="image" column="image"/>
+        <result property="entryDate" column="entry_date"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+
+        &lt;!&ndash;映射复杂类型
+    1对1： 1个Emp有1个对象（部门） association映射部门对象 ,也可以使用collection
+    1对多：1个Emp有多个对象List(工作经历) collection映射List<EmpExpr>
+        接下来映射工作经历
+    &ndash;&gt;
+        <collection property="exprList" ofType="EmpExpr">
+            <id property="id" column="expr_id"></id>
+            <result property="empId" column="expr_emp_id"/>
+            <result property="begin" column="expr_begin"/>
+            <result property="end" column="expr_end"/>
+            <result property="company" column="expr_company"/>
+            <result property="job" column="expr_job"/>
+        </collection>
+    </resultMap>
+    <select id="findById" resultMap="findByIdMap">
+        select e.*,
+               ee.id      expr_id,
+               ee.emp_id  expr_emp_id,
+               ee.begin   expr_begin,
+               ee.end     expr_end,
+               ee.company expr_company,
+               ee.job     expr_job
+        from emp e
+                 left join emp_expr ee on e.id = ee.emp_id
+        where e.id = #{id}
+    </select>
+
+    &lt;!&ndash;
+    规则：数据不为null才修改
+    update语句：update 表名 set 字段名1=字段值1,字段名2=字段值2,...
+    <set> 相当于set关键字，还可以去掉多余逗号“,” 所以sql语句后面要写逗号哦，避免多条语句粘在一起了&ndash;&gt;
+    <update id="update">
+        update  emp
+        <set>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="password!=null and password!=''">
+                password = #{password},
+            </if>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="gender!=null">
+                gender = #{gender},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone = #{phone},
+            </if>
+            <if test="job!=null">
+                job = #{job},
+            </if>
+            <if test="salary!=null">
+                salary = #{salary},
+            </if>
+            <if test="image!=null and image!=''">
+                image = #{image},
+            </if>
+            <if test="entryDate!=null">
+                entry_date = #{entryDate},
+            </if>
+            <if test="deptId!=null">
+                dept_id = #{deptId},
+            </if>
+            <if test="updateTime!=null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    &lt;!&ndash;joblist and datalist 用map集合接收&ndash;&gt;
+    &lt;!&ndash;List<Map<String,Object>> countByEmpJobData();&ndash;&gt;
+    <select id="findJobData" resultType="java.util.Map">
+        select case job
+                   when '1' then '教研主管'
+                   when '2' then '学工主管'
+                   when '3' then '讲师'
+                   when '4' then '班主任'
+                   else '其他班' end as job, count(*) as count
+        from emp where job is not null group by job order by count asc
+    </select>
+
+    &lt;!&ndash;countEmpGender&ndash;&gt;
+    <select id="countEmpGender" resultType="java.util.Map">
+        select case gender
+                   when '1' then '男性员工'
+                   else '女性员工' end as name, count(*) as value
+        from emp where job is not null group by gender order by value asc
+    </select>-->
+</mapper>

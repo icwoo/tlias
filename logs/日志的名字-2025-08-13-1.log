@@ -1,0 +1,24 @@
+2025-08-13 16:58:55.489 [main] INFO  a-Starting a using Java 17.0.9 with PID 16992 (started by 24862 in E:\cqwaimai\web-project\tilias-web-management)
+2025-08-13 16:58:55.495 [main] INFO  a-No active profile set, falling back to 1 default profile: "default"
+2025-08-13 16:58:56.789 [main] INFO  a-Started a in 1.583 seconds (process running for 2.631)
+2025-08-13 16:58:57.392 [main] INFO  a-方法的开始
+2025-08-13 16:58:57.392 [main] INFO  a-执行第0次
+2025-08-13 16:58:57.393 [main] INFO  a-执行第1次
+2025-08-13 16:58:57.393 [main] INFO  a-执行第2次
+2025-08-13 16:58:57.414 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-{dataSource-0} closing ...
+2025-08-13 16:59:13.184 [main] INFO  a-Starting a using Java 17.0.9 with PID 13092 (started by 24862 in E:\cqwaimai\web-project\tilias-web-management)
+2025-08-13 16:59:13.187 [main] INFO  a-No active profile set, falling back to 1 default profile: "default"
+2025-08-13 16:59:14.450 [main] INFO  a-Started a in 1.548 seconds (process running for 2.582)
+2025-08-13 16:59:15.011 [main] INFO  a-方法的开始
+2025-08-13 16:59:15.011 [main] INFO  a-执行第0次
+2025-08-13 16:59:15.012 [main] INFO  a-执行第1次
+2025-08-13 16:59:15.013 [main] INFO  a-执行第2次
+2025-08-13 16:59:15.035 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-{dataSource-0} closing ...
+2025-08-13 22:21:26.693 [main] INFO  a-Starting a using Java 17.0.9 with PID 14924 (started by 24862 in E:\cqwaimai\web-project\tilias-web-management)
+2025-08-13 22:21:26.695 [main] INFO  a-No active profile set, falling back to 1 default profile: "default"
+2025-08-13 22:21:28.800 [main] INFO  a-Started a in 2.408 seconds (process running for 3.927)
+2025-08-13 22:21:29.557 [main] INFO  a-方法的开始
+2025-08-13 22:21:29.558 [main] INFO  a-执行第0次
+2025-08-13 22:21:29.559 [main] INFO  a-执行第1次
+2025-08-13 22:21:29.559 [main] INFO  a-执行第2次
+2025-08-13 22:21:29.583 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-{dataSource-0} closing ...
