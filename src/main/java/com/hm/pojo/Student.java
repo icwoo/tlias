@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +25,7 @@ public class Student {
     private String idCard;           // 身份证号
     private Integer isCollege;        // 是否在校（0:否, 1:是）
     private String address;          // 地址
-    private LocalDateTime graduationDate;  // 毕业日期
+    private LocalDate graduationDate;  // 毕业日期
     private Integer violationCount;   // 违纪次数
     private Integer violationScore;   // 违纪扣分
     private Integer clazzId;          // 班级ID

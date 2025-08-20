@@ -72,7 +72,8 @@ public class StudentController {
     @PostMapping
     public Result addStu(@RequestBody Student student){
 
-
+        log.info("添加学生，姓名：{}分",student.getName());
+        studentService.addStu(student);
         return Result.success();
     }
 }

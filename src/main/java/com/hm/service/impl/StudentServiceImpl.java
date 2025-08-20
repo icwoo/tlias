@@ -52,4 +52,11 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.addViolatScore(id,score,now);
 
     }
+
+    @Override
+    public void addStu(Student student) {
+        student.setCreateTime(LocalDateTime.now());
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.addStu(student);
+    }
 }

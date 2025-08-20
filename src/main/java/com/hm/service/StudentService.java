@@ -19,4 +19,6 @@ public interface StudentService {
     Student findById(Integer id);
 
     void addViolatScore(Integer id, Integer score);
+
+    void addStu(Student student);
 }
