@@ -74,4 +74,6 @@ public interface EmpMapper {
     List<Map<String, Object>> countStudentDegree();
 
     @Select("select * from emp where username=#{username} and password=#{password}")
-    Emp findByUserNameAndPassword(String username, String password);}
+    Emp findByUserNameAndPassword(String username, String password);
+
+}

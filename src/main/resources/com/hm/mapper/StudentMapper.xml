@@ -91,4 +91,10 @@
             id=#{id}
         </foreach>
     </delete>
+
+    <!--resultType：查出两个值，用map接收-->
+    <select id="countStudent" resultType="java.util.Map">
+        select count(*) count ,(select name   from clazz c where id=s.clazz_id) as name
+        from student s group by s.clazz_id
+    </select>
 </mapper>

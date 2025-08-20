@@ -1,5 +1,6 @@
 package com.hm.service;
 
+import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface ReportService {
     List<Map<String,Object>> countEmpGender();
 
     List<Map<String, Object>> countStudentDegree();
+
+    ClazzDataVO countStudent();
 }

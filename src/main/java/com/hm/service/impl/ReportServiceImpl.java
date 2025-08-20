@@ -1,11 +1,14 @@
 package com.hm.service.impl;
 
 import com.hm.mapper.EmpMapper;
+import com.hm.mapper.StudentMapper;
+import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 import com.hm.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +21,8 @@ import java.util.Map;
 public class ReportServiceImpl implements ReportService {
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private StudentMapper studentMapper;
     @Override
     public JobOptionVO countByEmpJobData() {
         //1.调用mapper查询执行数据统计返回List<Map<String,Object>>
@@ -42,5 +47,24 @@ public class ReportServiceImpl implements ReportService {
     public List<Map<String, Object>> countStudentDegree() {
 
         return empMapper.countStudentDegree();
+    }
+
+    @Override
+    public ClazzDataVO countStudent() {
+        //怎么把这些数据拆成两个list
+        List<Map<String, Object>> maps = studentMapper.countStudent();
+        ArrayList<String> clazzList = new ArrayList<>();
+        ArrayList<Integer> dataList = new ArrayList<>();
+
+        for (Map<String, Object> row : maps) {
+            // 通过别名获取值
+            String className = (String) row.get("name");
+            Integer count = ((Long) row.get("count")).intValue(); // Long转int
+
+            clazzList.add(className);
+            dataList.add(count);
+        }
+
+        return new ClazzDataVO(clazzList,dataList);
     }
 }

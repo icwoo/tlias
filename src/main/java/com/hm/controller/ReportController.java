@@ -1,6 +1,7 @@
 package com.hm.controller;
 
 import com.hm.pojo.Result;
+import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 import com.hm.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +49,17 @@ public class ReportController {
     public Result countStudentDegree(){
 
         List<Map<String,Object>> list = reportService.countStudentDegree();
+
+        return Result.success(list);
+    }
+    /**
+     * 该接口用于统计每个班级的人数信息
+     * @return
+     */
+    @GetMapping("/studentCountData")
+    public Result countStudent(){
+
+        ClazzDataVO  list = reportService.countStudent();
 
         return Result.success(list);
     }

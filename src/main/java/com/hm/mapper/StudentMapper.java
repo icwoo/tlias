@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description StudentMapper
@@ -30,4 +31,6 @@ public interface StudentMapper {
     void updateStu(Student student);
 
     void deleteStu(List<String> ids);
+
+    List<Map<String, Object>> countStudent();
 }
