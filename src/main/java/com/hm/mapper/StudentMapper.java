@@ -26,4 +26,6 @@ public interface StudentMapper {
     void addViolatScore(Integer id, Integer score, LocalDateTime updateTime);
 
     void addStu(Student student);
+
+    void updateStu(Student student);
 }

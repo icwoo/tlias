@@ -34,4 +34,41 @@
         insert into student (name,no,gender,phone,degree,id_card,is_college,address,graduation_date,violation_count,violation_score,clazz_id,create_time,update_time)
         values (#{name},#{no},#{gender},#{phone},#{degree},#{idCard},#{isCollege},#{address},#{graduationDate},0,0,#{clazzId},#{createTime},#{updateTime})
     </insert>
+    <update id="updateStu">
+        update student
+        <set>
+            <if test="name !=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="no !=null and no!=''">
+                no=#{no},
+            </if>
+            <if test="gender !=null">
+                gender=#{gender},
+            </if>
+            <if test="phone !=null and phone!=''">
+                phone=#{phone},
+            </if>
+            <if test="idCard !=null and idCard!=''">
+                id_card=#{idCard},
+            </if>
+            <if test="isCollege !=null">
+                is_college=#{isCollege},
+            </if>
+            <if test="address !=null and address!=''">
+                address=#{address},
+            </if>
+            <if test="degree !=null">
+                degree=#{degree},
+            </if>
+            <if test="graduationDate !=null">
+                graduation_date=#{graduationDate},
+            </if>
+            <if test="clazzId !=null">
+                clazz_id=#{clazzId},
+            </if>
+            update_time=#{updateTime},
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

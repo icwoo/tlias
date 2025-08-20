@@ -21,4 +21,6 @@ public interface StudentService {
     void addViolatScore(Integer id, Integer score);
 
     void addStu(Student student);
+
+    void updateStu(Student student);
 }

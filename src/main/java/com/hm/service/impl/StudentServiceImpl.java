@@ -59,4 +59,10 @@ public class StudentServiceImpl implements StudentService {
         student.setUpdateTime(LocalDateTime.now());
         studentMapper.addStu(student);
     }
+
+    @Override
+    public void updateStu(Student student) {
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.updateStu(student);
+    }
 }

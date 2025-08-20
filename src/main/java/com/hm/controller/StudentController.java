@@ -76,4 +76,10 @@ public class StudentController {
         studentService.addStu(student);
         return Result.success();
     }
+    @PutMapping
+    public Result updateStu(@RequestBody Student student){
+        log.info("修改学生，姓名：{}",student.getName());
+        studentService.updateStu(student);
+        return  Result.success();
+    }
 }
