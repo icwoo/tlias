@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @Description StudentController
@@ -80,6 +81,13 @@ public class StudentController {
     public Result updateStu(@RequestBody Student student){
         log.info("修改学生，姓名：{}",student.getName());
         studentService.updateStu(student);
+        return  Result.success();
+    }
+    @DeleteMapping("/{ids}")
+    public Result deleteStu(@PathVariable List<String> ids){
+        log.info("删除学生，ids：{}",ids);
+
+        studentService.deleteStu(ids);
         return  Result.success();
     }
 }

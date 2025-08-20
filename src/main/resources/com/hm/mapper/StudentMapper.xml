@@ -71,4 +71,24 @@
         </set>
         where id=#{id}
     </update>
+
+    <!--两种写法，在xml代码里区别就是foreach的写法不同
+    sql1: delete from emp where id in (1,2,3,...)
+    :(1,2,3,...) 要把左右括号作为开始open和结束end，逗号分开。foreach里写  #{id}就行了
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+
+    sql2: delete from emp where id=1 or id=2 or id=3 or ...
+    id=1 or id=2 or  这样foreach里写id=#{id}
+            <foreach collection="ids" item="id" separator="or">
+            id=#{id}
+        </foreach>
+    -->
+    <delete id="deleteStu">
+        delete from student where
+        <foreach collection="ids" item="id" separator="or">
+            id=#{id}
+        </foreach>
+    </delete>
 </mapper>

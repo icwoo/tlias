@@ -65,4 +65,9 @@ public class StudentServiceImpl implements StudentService {
         student.setUpdateTime(LocalDateTime.now());
         studentMapper.updateStu(student);
     }
+
+    @Override
+    public void deleteStu(List<String> ids) {
+        studentMapper.deleteStu(ids);
+    }
 }

@@ -28,4 +28,6 @@ public interface StudentMapper {
     void addStu(Student student);
 
     void updateStu(Student student);
+
+    void deleteStu(List<String> ids);
 }
