@@ -3,6 +3,7 @@ package com.hm.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hm.annotation.InsertLog;
 import com.hm.mapper.EmpExprMapper;
 import com.hm.mapper.EmpMapper;
 import com.hm.pojo.Emp;
@@ -117,6 +118,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @InsertLog
     public List<Emp> getAll() {
         List<Emp> list = empMapper.getAll();
         return list;
@@ -139,6 +141,7 @@ public class EmpServiceImpl implements EmpService {
     //上面是一条sql语句
     //下面是两条sql语句解决
     @Override
+    @InsertLog
     public Emp findById2(Integer id) {
         Emp emp = empMapper.findById2(id);
         List<EmpExpr> exprlist = empExprMapper.findById3(id);
@@ -154,6 +157,7 @@ public class EmpServiceImpl implements EmpService {
      * @param emp
      */
     @Override
+    @InsertLog
     public void update(Emp emp) {
         //补全数据
         emp.setUpdateTime(LocalDateTime.now());

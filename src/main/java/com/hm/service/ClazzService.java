@@ -1,5 +1,6 @@
 package com.hm.service;
 
+import com.hm.annotation.InsertLog;
 import com.hm.pojo.Clazz;
 import com.hm.pojo.PageResult;
 import com.hm.pojo.dto.PageQueryClazzDTO;
@@ -19,6 +20,7 @@ public interface ClazzService {
 
     List<Clazz> getAll();
 
+    @InsertLog
     PageResult<Clazz> pageQueryClazz(Integer page, Integer pageSize, String name, LocalDate begin, LocalDate end);
 
     Clazz findById(Integer id);

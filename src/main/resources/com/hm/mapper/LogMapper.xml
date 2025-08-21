@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.LogMapper">
+
+<!--    <insert id="insertIntoLog">
+        INSERT INTO operate_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            &lt;!&ndash; 处理操作人ID（可能为空） &ndash;&gt;
+            <if test="operateEmpId != null">
+                operate_emp_id,
+            </if>
+            &lt;!&ndash; 必填字段 &ndash;&gt;
+            operate_time,
+            class_name,
+            method_name,
+            &lt;!&ndash; 方法参数（可能为空） &ndash;&gt;
+            <if test="methodParams != null and methodParams != ''">
+                method_params,
+            </if>
+            &lt;!&ndash; 返回值（可能为空） &ndash;&gt;
+            <if test="returnValue != null and returnValue != ''">
+                return_value,
+            </if>
+            cost_time
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            &lt;!&ndash; 处理操作人ID（可能为空） &ndash;&gt;
+            <if test="operateEmpId != null">
+                #{operateEmpId},
+            </if>
+            &lt;!&ndash; 必填字段 &ndash;&gt;
+            #{operateTime},
+            #{className},
+            #{methodName},
+            &lt;!&ndash; 方法参数（可能为空） &ndash;&gt;
+            <if test="methodParams != null and methodParams != ''">
+                #{methodParams},
+            </if>
+            &lt;!&ndash; 返回值（可能为空） &ndash;&gt;
+            <if test="returnValue != null and returnValue != ''">
+                #{returnValue},
+            </if>
+            #{costTime}
+        </trim>
+    </insert>-->
+
+
+</mapper>
