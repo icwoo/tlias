@@ -3,6 +3,7 @@ package com.hm.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hm.annotation.InsertLog;
 import com.hm.mapper.EmpExprMapper;
 import com.hm.mapper.EmpMapper;
 import com.hm.pojo.Emp;
@@ -177,13 +178,18 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public LoginVO login(Emp emp) {
+        //查找之后返回emp1，里面有empid等信息，emp传回的只有name和password
         Emp emp1 = empMapper.findByUserNameAndPassword(emp.getUsername(), emp.getPassword());
 
         if (emp1 != null) {
 
             //定义载荷
             Map<String, Object> claims = new HashMap<>();
-            claims.put("empId", emp.getId());
+            claims.put("empId", emp1.getId());
+/*            System.out.println("-----------------------");
+            System.out.println("empId:"+emp1.getId());//1
+            System.out.println("empId:"+emp.getId());//null
+            System.out.println("-----------------------");*/
             String token = JwtUtils.generateJwt(claims);
 
             LoginVO loginVO =

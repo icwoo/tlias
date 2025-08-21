@@ -1,6 +1,7 @@
 package com.hm.controller;
 
 
+import com.hm.annotation.InsertLog;
 import com.hm.pojo.Clazz;
 import com.hm.pojo.Emp;
 import com.hm.pojo.PageResult;

@@ -1,5 +1,6 @@
 package com.hm.controller;
 
+import com.hm.annotation.InsertLog;
 import com.hm.pojo.Clazz;
 import com.hm.pojo.PageResult;
 import com.hm.pojo.Result;
@@ -32,6 +33,7 @@ public class ClazzController {
 
     //添加班级
     @PostMapping
+    @InsertLog
     public Result addClazz(@RequestBody Clazz clazz) {
         log.info("执行班级添加：{}", clazz);
          clazzService.addClazz(clazz);

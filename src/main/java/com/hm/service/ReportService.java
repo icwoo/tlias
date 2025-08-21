@@ -1,5 +1,6 @@
 package com.hm.service;
 
+import com.hm.annotation.InsertLog;
 import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 
@@ -15,10 +16,7 @@ public interface ReportService {
      /* @return
              */
     JobOptionVO countByEmpJobData();
-
     List<Map<String,Object>> countEmpGender();
-
     List<Map<String, Object>> countStudentDegree();
-
     ClazzDataVO countStudent();
 }

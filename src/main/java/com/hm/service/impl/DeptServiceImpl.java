@@ -1,5 +1,6 @@
 package com.hm.service.impl;
 
+import com.hm.annotation.InsertLog;
 import com.hm.mapper.DeptMapper;
 import com.hm.pojo.Dept;
 import com.hm.pojo.Result;
@@ -46,6 +47,7 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
+    @InsertLog
     public void update(Dept dept) {
         dept.setUpdateTime(LocalDateTime.now());
         deptMapper.update(dept);

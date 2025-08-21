@@ -1,5 +1,6 @@
 package com.hm.controller;
 
+import com.hm.annotation.InsertLog;
 import com.hm.pojo.Result;
 import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
@@ -38,6 +39,7 @@ public class ReportController {
 
     //员工性别统计
     @GetMapping("/empGenderData")
+    @InsertLog
     public Result countEmpGender(){
 
         List<Map<String,Object>> list = reportService.countEmpGender();
