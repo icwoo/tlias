@@ -112,7 +112,7 @@ public class EmpController {
     //员工更新
     @PutMapping
     public Result update(@RequestBody Emp emp){
-
+        log.info("修改员工详情,emp为：{}",emp);
         empService.update(emp);
         return  Result.success();
     }

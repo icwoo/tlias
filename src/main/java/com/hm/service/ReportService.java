@@ -1,6 +1,9 @@
 package com.hm.service;
 
 import com.hm.annotation.InsertLog;
+import com.hm.pojo.EmpLog;
+import com.hm.pojo.OperateLog;
+import com.hm.pojo.PageResult;
 import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 
@@ -19,4 +22,6 @@ public interface ReportService {
     List<Map<String,Object>> countEmpGender();
     List<Map<String, Object>> countStudentDegree();
     ClazzDataVO countStudent();
+
+    PageResult<OperateLog> getAllByPage(Integer page, Integer pageSize);
 }

@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hm.mapper.LogMapper">
 
+
+<!--    <select id="getAllByPages" resultType="=OperateLog">
+        select * from operate_log
+    </select>-->
 <!--    <insert id="insertIntoLog">
         INSERT INTO operate_log
         <trim prefix="(" suffix=")" suffixOverrides=",">

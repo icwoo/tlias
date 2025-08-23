@@ -1,7 +1,14 @@
 package com.hm.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.hm.controller.LogController;
 import com.hm.mapper.EmpMapper;
+import com.hm.mapper.LogMapper;
 import com.hm.mapper.StudentMapper;
+import com.hm.pojo.EmpLog;
+import com.hm.pojo.OperateLog;
+import com.hm.pojo.PageResult;
 import com.hm.pojo.vo.ClazzDataVO;
 import com.hm.pojo.vo.JobOptionVO;
 import com.hm.service.ReportService;
@@ -23,6 +30,8 @@ public class ReportServiceImpl implements ReportService {
     private EmpMapper empMapper;
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private LogMapper logMapper;
     @Override
     public JobOptionVO countByEmpJobData() {
         //1.调用mapper查询执行数据统计返回List<Map<String,Object>>
@@ -66,5 +75,14 @@ public class ReportServiceImpl implements ReportService {
         }
 
         return new ClazzDataVO(clazzList,dataList);
+    }
+
+    @Override
+    public PageResult<OperateLog> getAllByPage(Integer page, Integer pageSize) {
+        PageHelper.startPage( page, pageSize);
+
+        Page pages= (Page) logMapper.getAllByPages();
+
+        return new PageResult<>(pages.getResult(),pages.getTotal());
     }
 }

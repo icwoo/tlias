@@ -44,7 +44,9 @@ public class LogAspect {
 
         LocalDateTime start = LocalDateTime.now();
 
+        //这一步只是获取方法的返回值，其实跟下面获取类名、方法信息、参数没什么区别
         Object result = pjp.proceed();
+
         OperateLog operateLog = new OperateLog();
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
